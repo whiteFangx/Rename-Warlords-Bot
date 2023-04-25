@@ -10,8 +10,7 @@ dbcol = db["user"]
 #Total User 
 
 def total_user():
-      user = dbcol.count_documents({})
-      return user
+      return dbcol.count_documents({})
       
 #insert bot Data 
 def botdata(chat_id):
@@ -34,13 +33,12 @@ def total_size(chat_id,total_size,now_file_size):
 	
 #insert user data 
 def insert(chat_id):
-            user_id = int(chat_id)
-            user_det = {"_id":user_id,"file_id":None ,"caption":None ,"daily":0 ,"date":0 , "uploadlimit" :2147483648,"used_limit":0,"usertype":"Free","prexdate" : None}
-            try:
-            	dbcol.insert_one(user_det)
-            except:
-            	return True
-            	pass
+      user_id = int(chat_id)
+      user_det = {"_id":user_id,"file_id":None ,"caption":None ,"daily":0 ,"date":0 , "uploadlimit" :2147483648,"used_limit":0,"usertype":"Free","prexdate" : None}
+      try:
+            dbcol.insert_one(user_det)
+      except:
+            return True
 
 def addthumb(chat_id, file_id):
 	dbcol.update_one({"_id":chat_id},{"$set":{"file_id":file_id}})
@@ -93,11 +91,7 @@ def find(chat_id):
              return [file, caption]
 
 def getid():
-    values = []
-    for key  in dbcol.find():
-         id = key["_id"]
-         values.append((id)) 
-    return values
+      return [key["_id"] for key in dbcol.find()]
 
 def delete(id):
 	dbcol.delete_one(id)

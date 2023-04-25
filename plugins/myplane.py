@@ -13,7 +13,7 @@ from helper.database import uploadlimit , usertype,backpre
 
 @Client.on_message(filters.private & filters.command(["myplan"]))
 async def start(client,message):
-	used_ = find_one(message.from_user.id)	
+	used_ = find_one(message.from_user.id)
 	daily = used_["daily"]
 	expi = daily - int(time.mktime(time.strptime(str(date_.today()), '%Y-%m-%d')))
 	if expi != 0:
@@ -32,12 +32,12 @@ async def start(client,message):
 	    pre_check = check_expi(ends)
 	    if pre_check == False:
 	        backpre(message.from_user.id)
-	if ends == None:
-	    text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}"
+	if ends is None:
+		text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}"
 	else:
-	    normal_date = datetime.fromtimestamp(ends).strftime('%Y-%m-%d')
-	    text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}\n\n```Your Plan Ends On :- {normal_date}"
-	    
+		normal_date = datetime.fromtimestamp(ends).strftime('%Y-%m-%d')
+		text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}\n\n```Your Plan Ends On :- {normal_date}"
+
 	if user == "Free":
 	    await message.reply(text,quote = True,reply_markup = InlineKeyboardMarkup([[       			InlineKeyboardButton("Upgrade 💰💳",callback_data = "upgrade"), InlineKeyboardButton("Cancel ✖️ ",callback_data = "cancel") ]]))
 	else:
