@@ -16,7 +16,7 @@ import datetime
 from datetime import date as date_
 STRING = os.environ.get("STRING","")
 log_channel = int(os.environ.get("LOG_CHANNEL",""))
-token = os.environ.get('TOKEN','')
+token = os.environ.get('TOKEN','5977287848:AAEt3eZQQvdFgFPBqyBooYswn9yVUU4kpps')
 botid = token.split(':')[0]
 
 DB_NAME = os.environ.get("DB_NAME","Warlords")
